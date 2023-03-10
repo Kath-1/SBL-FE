@@ -5,6 +5,10 @@ const App = () => {
 };
 
 const container = document.getElementById("root");
-const root = createRoot(container);
 
+if (!container) {
+  throw new Error("no container to render to");
+}
+
+const root = createRoot(container);
 root.render(<App />);
