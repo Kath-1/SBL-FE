@@ -5,7 +5,7 @@ const Header = () => (
   <header className="fixed w-full px-8 py-3">
     <nav className="flex  justify-between ">
       <Link to={`/`}>
-        <img className="h-20" src={logo} alt="home page" />
+        <img className="h-20" src={logo || ""} alt="home page" />
       </Link>
       <Link to={`/user`}>
         <svg
