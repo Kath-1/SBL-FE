@@ -1,7 +1,21 @@
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./Header";
+import MainPage from "./MainPage";
+import UserPage from "./UserPage";
 
 const App = () => {
-  return <h1>Test</h1>;
+  return (
+    <BrowserRouter>
+      <Header />
+      <div className="pt-16">
+        <Routes>
+          <Route path="/user" element={<UserPage />}></Route>
+          <Route path="/" element={<MainPage />}></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 };
 
 const container = document.getElementById("root");
