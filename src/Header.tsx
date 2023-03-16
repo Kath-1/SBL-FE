@@ -2,17 +2,24 @@ import { Link } from "react-router-dom";
 import karrosProfilePicture from "./assets/karro.png";
 
 const Header = () => (
-  <header className="fixed px-8 py-3 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 ">
-    <nav className="flex justify-between items-center text-slate-600">
-      <Link to={`/`} className="text-4xl text-pink-600">
-        SBL
-      </Link>
+  // <header className="fixed px-8 py-3 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 ">
+  <header className="sticky px-8 py-3 max-w-7xl mx-auto w-full  ">
+    <nav className="flex justify-between items-center text-slate-800">
+      <div className="flex items-center">
+        <Link to={`/`} className="text-4xl text-pink-600 mr-6">
+          SBL
+        </Link>
+        <Link to={"/stats"} className="mr-6">
+          Stats
+        </Link>
+        <Link to="/history">Previous weeks</Link>
+      </div>
       <Link to={`/user`}>
         {karrosProfilePicture ? (
           <img
             src={karrosProfilePicture}
             alt=""
-            className="h-16 rounded-full bg-white border-2 border-pink-600"
+            className="h-14 rounded-full bg-white border-2 border-gray-400"
           />
         ) : (
           <svg

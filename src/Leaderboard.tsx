@@ -53,7 +53,7 @@ const LeaderboardUser = ({ user }: { user: User }) => {
     <tr>
       <td>
         <div className="flex items-center">
-          <img src={imageUrl} alt="" className="h-8 w-8 rounded-full mr-5" />
+          <img src={imageUrl} alt="" className="h-8 w-8 rounded-full mr-2" />
           <p className="pr-2">{user.nickname}</p>
         </div>
       </td>
