@@ -8,7 +8,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <div className="max-w-7xl mx-auto pt-6 px-2 w-full ">
+      <div className="max-w-7xl mx-auto pt-20 px-4 w-full ">
         <Routes>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/" element={<MainPage />}></Route>

@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import karrosProfilePicture from "./assets/karro.png";
 
 const Header = () => (
-  // <header className="fixed px-8 py-3 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 ">
-  <header className="sticky px-8 py-3 max-w-7xl mx-auto w-full  ">
+  <header className="fixed px-8 py-2 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 bg-white drop-shadow-md">
+    {/* <header className="sticky px-8 py-3 max-w-7xl mx-auto w-full "> */}
     <nav className="flex justify-between items-center text-slate-800">
       <div className="flex items-center">
         <Link to={`/`} className="text-4xl text-pink-600 mr-6">
@@ -19,7 +19,7 @@ const Header = () => (
           <img
             src={karrosProfilePicture}
             alt=""
-            className="h-14 rounded-full bg-white border-2 border-gray-400"
+            className="h-12 rounded-full bg-white border-2 border-gray-400 bg-gray-400"
           />
         ) : (
           <svg

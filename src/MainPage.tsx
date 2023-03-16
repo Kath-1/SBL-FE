@@ -47,7 +47,9 @@ const Game = () => {
                 className="h-6                                                                                                                                                                          00"
               />
             </td>
-            <td className="text-right bg-yellow-300/50 rounded-lg ">320</td>
+            <td className=" bg-yellow-300/50 rounded-lg w-14 text-center">
+              320
+            </td>
           </tr>
           <tr>
             <td>Max</td>
@@ -67,7 +69,9 @@ const Game = () => {
                 className="h-6                                                                                                                                                                          00"
               />
             </td>
-            <td className="text-right bg-yellow-300/50 rounded-lg">320</td>
+            <td className=" bg-yellow-300/50 rounded-lg w-14 text-center">
+              320
+            </td>
           </tr>
           <tr>
             <td>Victor</td>
@@ -78,7 +82,9 @@ const Game = () => {
                 className="h-6                                                                                                                                                                          00"
               />
             </td>
-            <td className="text-right bg-yellow-300/50 rounded-lg">320</td>
+            <td className=" bg-yellow-300/50 rounded-lg w-14 text-center">
+              320
+            </td>
           </tr>
         </tbody>
       </table>
