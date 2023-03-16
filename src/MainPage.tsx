@@ -1,5 +1,7 @@
+import Leaderboard from "./Leaderboard";
+
 const MainPage = () => {
-  return <h1>Main</h1>;
+  return <Leaderboard />;
 };
 
 export default MainPage;
