@@ -1,5 +1,5 @@
 overwrite: true
-schema: "./schema.graphql"
+schema: "../schema.graphql"
 # documents:
 #   - "src/**/*.graphql"
 #   - "src/**/*.tsx"
