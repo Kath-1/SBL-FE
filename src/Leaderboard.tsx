@@ -12,7 +12,7 @@ const mockUsers = [
   { nickname: "Max", profilePicture: maxProfilePicture, id: "3" },
   { nickname: "Karro", profilePicture: karrosProfilePicture, id: "4" },
   { nickname: "Jocke", profilePicture: jockesProfilePicture, id: "5" },
-  { nickname: "Victor", profilePicture: victorsProfilePicture, id: "5" },
+  { nickname: "Victor", profilePicture: victorsProfilePicture, id: "6" },
 ];
 
 type User = {

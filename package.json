@@ -10,12 +10,18 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/client-preset": "2.1.1",
+    "@graphql-codegen/introspection": "3.0.1",
+    "@graphql-codegen/typescript": "^3.0.2",
+    "@graphql-codegen/typescript-resolvers": "^3.1.1",
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -38,6 +44,9 @@
     "vitest": "^0.29.2"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.10",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",

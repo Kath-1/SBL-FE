@@ -18,7 +18,7 @@ const ExpandableSection = ({
         onClick={() => setExpanded(!expanded)}
         className="w-full text-left flex items-center"
       >
-        <h3 className="text-xl mr-2">{title}</h3>
+        <h3 className="text-lg mr-2">{title}</h3>
         {expanded ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"

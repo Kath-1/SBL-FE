@@ -2,23 +2,24 @@ import React from "react";
 import ExpandableSection from "./ExpandableSection";
 import Leaderboard from "./Leaderboard";
 import eagles from "./assets/eagles.png";
+import { Game } from "./generated/graphql";
 
 const TestElement = () => <p>Hello!</p>;
 
-const Game = () => {
+const GameWithBets = ({ game }: { game: Game }) => {
   return (
     <div className="bg-white rounded-md max-w-xs p-2">
       <div className="flex items-center justify-center">
-        <div className="bg-teal-500 text-lg text-white p-2 rounded-md mr-2 w-10 text-center">
-          17
+        <div className="bg-teal-500 text-lg text-white p-2 rounded-md mr-4 w-10 text-center">
+          {game.awayScore}
         </div>
         <h3>
-          <span>Packers</span>
+          <span>{game.awayTeam.nickname}</span>
           <span className="mx-2">@</span>
-          <span>Bears</span>
+          <span>{game.homeTeam.nickname}</span>
         </h3>
-        <div className="bg-gray-400 text-lg text-white p-2 rounded-md ml-2 w-10 text-center">
-          7
+        <div className="bg-gray-400 text-lg text-white p-2 rounded-md ml-4 w-10 text-center">
+          {game.homeScore}
         </div>
       </div>
       <p className="text-center">–</p>
@@ -98,12 +99,39 @@ const Game = () => {
   );
 };
 
+const testGames: Game[] = [
+  {
+    id: "12",
+    homeTeam: {
+      nickname: "Bears",
+    },
+    awayTeam: {
+      nickname: "Packers",
+    },
+    awayScore: 14,
+    homeScore: 7,
+  },
+  {
+    id: "12",
+    homeTeam: {
+      nickname: "Eagles",
+    },
+    awayTeam: {
+      nickname: "Footballers",
+    },
+    awayScore: 28,
+    homeScore: 0,
+  },
+];
+
 const MainPage = () => {
   return (
     <React.Fragment>
       <Leaderboard />
       <ExpandableSection title="Ongoing games" expandedInitially={true}>
-        <Game />
+        {testGames.map((game) => (
+          <GameWithBets key={game.id} game={game} />
+        ))}
       </ExpandableSection>
       <ExpandableSection title="Upcoming games" expandedInitially={false}>
         <TestElement />
