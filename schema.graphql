@@ -1,0 +1,250 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  getGame(id: ID!): Game
+  getGames(ids: [ID!]!): [Game]
+  getTeam(id: ID!): Team
+  getTeams(ids: [ID!], includeHistorical: Boolean = false): [Team]!
+  getRegularSeasonWeek(
+    season: Int
+    week: Int
+    onlyPlayerBets: Boolean = false
+  ): RegularSeasonWeek
+  getRegularSeasonLeaderboard(season: Int, week: Int): RegularSeasonLeaderboard
+}
+
+type Mutation {
+  saveGameBets(gameBets: [GameBetInput!]!): Boolean
+  lockGameBets(gameBets: [GameBetInput!]!): Boolean
+}
+
+input GameBetInput {
+  id: ID!
+  pick: Side!
+  stake: Int
+}
+
+type RegularSeasonWeek {
+  id: ID!
+  season: Int!
+  week: Int!
+  round: Round!
+  state: WeekState!
+  teamsOnBye: [String]!
+  games: [Game]!
+  stake: Int
+}
+
+type RegularSeasonLeaderboard {
+  id: ID!
+  season: Int!
+  week: Int!
+  round: Round!
+  numberOfGames: Int!
+  totalNumberOfGames: Int
+  scorecards: [Scorecard]!
+  weekScoreMax: Int!
+  weekScoreMaxWeighted: Int!
+  weekScoreOnlyFavorites: Int!
+  weekScoreOnlyUnderdogs: Int!
+  weekScoreOnlyHomeTeams: Int!
+  weekScoreOnlyAwayTeams: Int!
+  totalScoreMax: Int!
+  totalScoreMaxWeighted: Int!
+  totalScoreOnlyFavorites: Int!
+  totalScoreOnlyUnderdogs: Int!
+  totalScoreOnlyHomeTeams: Int!
+  totalScoreOnlyAwayTeams: Int!
+}
+
+type Scorecard {
+  id: ID!
+  player: String!
+  weekScore: Int!
+  weekScoreWeighted: Int!
+  weekScoreLive: Int
+  weekScorePossible: Int
+  weekScoreTheoretical: Int!
+  weekCorrect: Int!
+  weekCorrectPercent: Float!
+  totalScore: Int!
+  totalScoreWeighted: Int!
+  totalScoreLive: Int
+  totalScorePossible: Int
+  totalScoreTheoretical: Int!
+  totalCorrect: Int!
+  totalCorrectPercent: Float!
+  againstWeekScoreWeighted: Int!
+  againstWeekScoreWeightedPercent: Float!
+  againstWeekScoreMax: Int!
+  againstWeekScoreMaxPercent: Float!
+  againstWeekScoreMaxWeighted: Int!
+  againstWeekScoreMaxWeightedPercent: Float!
+  againstWeekScoreOnlyFavorites: Int!
+  againstWeekScoreOnlyFavoritesPercent: Float!
+  againstWeekScoreOnlyUnderdogs: Int!
+  againstWeekScoreOnlyUnderdogsPercent: Float!
+  againstWeekScoreOnlyHomeTeams: Int!
+  againstWeekScoreOnlyHomeTeamsPercent: Float!
+  againstWeekScoreOnlyAwayTeams: Int!
+  againstWeekScoreOnlyAwayTeamsPercent: Float!
+  againstTotalScoreWeighted: Int!
+  againstTotalScoreWeightedPercent: Float!
+  againstTotalScoreMax: Int!
+  againstTotalScoreMaxPercent: Float!
+  againstTotalScoreMaxWeighted: Int!
+  againstTotalScoreMaxWeightedPercent: Float!
+  againstTotalScoreOnlyFavorites: Int!
+  againstTotalScoreOnlyFavoritesPercent: Float!
+  againstTotalScoreOnlyUnderdogs: Int!
+  againstTotalScoreOnlyUnderdogsPercent: Float!
+  againstTotalScoreOnlyHomeTeams: Int!
+  againstTotalScoreOnlyHomeTeamsPercent: Float!
+  againstTotalScoreOnlyAwayTeams: Int!
+  againstTotalScoreOnlyAwayTeamsPercent: Float!
+}
+
+type Game {
+  id: ID!
+  round: Round!
+  season: Int!
+  seasonType: SeasonType!
+  isoKickoff: Int
+  stadium: String
+  awayTeam: Team!
+  homeTeam: Team!
+  awayCoach: String
+  homeCoach: String
+  awayScore: Int
+  homeScore: Int
+  quarter: Quarter
+  awayQuarterScores: [Int!]
+  homeQuarterScores: [Int!]
+  winner: Side
+  teamInPossession: String
+  down: Int
+  yardsToGo: Int
+  ballOnSide: String
+  ballOnYardLine: Int
+  timeoutsLeftAway: Int
+  timeoutsLeftHome: Int
+  gameState: GameState!
+  bets: [GameBet!]!
+}
+
+enum Quarter {
+  PREGAME
+  Q1
+  Q2
+  HALFTIME
+  Q3
+  Q4
+  OT
+  FINAL
+  FINAL_OT
+}
+
+enum Side {
+  HOME
+  AWAY
+  TIE
+  NONE
+}
+
+type GameBet {
+  id: ID!
+  gameId: ID!
+  awayOdds: Float
+  homeOdds: Float
+  bettingState: BettingState!
+  bettingType: BettingType!
+  player: String!
+  pick: Side!
+  stake: Int
+  score: Int
+  liveScore: Int
+  potentialScore: Int
+  locked: Boolean!
+  winner: Side
+  correct: Boolean
+}
+
+enum SeasonType {
+  PRE
+  REGULAR
+  POST
+}
+
+type Team {
+  id: ID!
+  shortName: String!
+  fullName: String!
+  city: String!
+  nickname: String!
+  conference: Conference!
+  division: String!
+  color1: String!
+  color2: String!
+  color3: String
+  color4: String
+  logo: String!
+  wordmark: String!
+}
+
+enum Conference {
+  AFC
+  NFC
+}
+
+enum GameState {
+  UPCOMING
+  ONGOING
+  FINISHED
+}
+
+enum BettingState {
+  NOT_OPENED
+  OPEN
+  CLOSED
+  PAID
+}
+
+enum BettingType {
+  NO_ODDS
+  ODDS
+  WALLET
+}
+
+enum WeekState {
+  UPCOMING
+  CURRENT
+  PAST
+}
+
+enum Round {
+  REG1
+  REG2
+  REG3
+  REG4
+  REG5
+  REG6
+  REG7
+  REG8
+  REG9
+  REG10
+  REG11
+  REG12
+  REG13
+  REG14
+  REG15
+  REG16
+  REG17
+  REG18
+  POST_WC
+  POST_DIV
+  POST_CONF
+  POST_SB
+}

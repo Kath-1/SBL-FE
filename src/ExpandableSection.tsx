@@ -3,10 +3,15 @@ import { ReactNode, useState } from "react";
 type ExtandableSectionProps = {
   title: string;
   children: ReactNode;
+  expandedInitially: boolean;
 };
 
-const ExpandableSection = ({ title, children }: ExtandableSectionProps) => {
-  const [expanded, setExpanded] = useState(true);
+const ExpandableSection = ({
+  title,
+  children,
+  expandedInitially,
+}: ExtandableSectionProps) => {
+  const [expanded, setExpanded] = useState(expandedInitially);
   return (
     <section className="mt-4 bg-slate-50/50 rounded-sm p-4">
       <button

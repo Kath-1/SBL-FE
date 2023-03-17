@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import karrosProfilePicture from "./assets/karro.png";
 
 const Header = () => (
-  <header className="fixed px-8 py-2 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 bg-white drop-shadow-md">
+  <header className="fixed px-8 py-2  w-full  bg-white drop-shadow-md">
     {/* <header className="sticky px-8 py-3 max-w-7xl mx-auto w-full "> */}
-    <nav className="flex justify-between items-center text-slate-800">
+    <nav className="flex justify-between items-center text-slate-800 max-w-7xl mx-auto">
       <div className="flex items-center">
         <Link to={`/`} className="text-4xl text-pink-600 mr-6">
           SBL
