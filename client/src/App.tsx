@@ -6,7 +6,7 @@ import MainPage from "./MainPage";
 import UserPage from "./UserPage";
 
 const client = new ApolloClient({
-  uri: "",
+  uri: "http://localhost:4000",
   cache: new InMemoryCache(),
 });
 

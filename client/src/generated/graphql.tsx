@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -306,3 +308,126 @@ export enum WeekState {
   Past = 'PAST',
   Upcoming = 'UPCOMING'
 }
+
+export type GetRegularSeasonWeekQueryVariables = Exact<{
+  season?: InputMaybe<Scalars['Int']>;
+  week?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetRegularSeasonWeekQuery = { __typename?: 'Query', getRegularSeasonWeek?: { __typename?: 'RegularSeasonWeek', id: string, season: number, week: number, round: Round, state: WeekState, teamsOnBye: Array<string | null>, stake?: number | null, games: Array<{ __typename?: 'Game', id: string, round: Round, season: number, seasonType: SeasonType, isoKickoff?: number | null, stadium?: string | null, awayCoach?: string | null, homeCoach?: string | null, awayScore?: number | null, homeScore?: number | null, quarter?: Quarter | null, awayQuarterScores?: Array<number> | null, homeQuarterScores?: Array<number> | null, winner?: Side | null, teamInPossession?: string | null, down?: number | null, yardsToGo?: number | null, ballOnSide?: string | null, ballOnYardLine?: number | null, timeoutsLeftAway?: number | null, timeoutsLeftHome?: number | null, gameState: GameState, awayTeam: { __typename?: 'Team', id: string, shortName: string, fullName: string, city: string, nickname: string, conference: Conference, division: string, color1: string, color2: string, color3?: string | null, color4?: string | null, logo: string, wordmark: string }, homeTeam: { __typename?: 'Team', id: string, shortName: string, fullName: string, city: string, nickname: string, conference: Conference, division: string, color1: string, color2: string, color3?: string | null, color4?: string | null, logo: string, wordmark: string }, bets: Array<{ __typename?: 'GameBet', id: string, gameId: string, awayOdds?: number | null, homeOdds?: number | null, bettingState: BettingState, bettingType: BettingType, player: string, pick: Side, stake?: number | null, score?: number | null, liveScore?: number | null, potentialScore?: number | null, locked: boolean, winner?: Side | null, correct?: boolean | null }> } | null> } | null };
+
+
+export const GetRegularSeasonWeekDocument = gql`
+    query GetRegularSeasonWeek($season: Int, $week: Int) {
+  getRegularSeasonWeek(season: $season, week: $week) {
+    id
+    season
+    week
+    round
+    state
+    teamsOnBye
+    stake
+    games {
+      id
+      round
+      season
+      seasonType
+      isoKickoff
+      stadium
+      awayTeam {
+        id
+        shortName
+        fullName
+        city
+        nickname
+        conference
+        division
+        color1
+        color2
+        color3
+        color4
+        logo
+        wordmark
+      }
+      homeTeam {
+        id
+        shortName
+        fullName
+        city
+        nickname
+        conference
+        division
+        color1
+        color2
+        color3
+        color4
+        logo
+        wordmark
+      }
+      awayCoach
+      homeCoach
+      awayScore
+      homeScore
+      quarter
+      awayQuarterScores
+      homeQuarterScores
+      winner
+      teamInPossession
+      down
+      yardsToGo
+      ballOnSide
+      ballOnYardLine
+      timeoutsLeftAway
+      timeoutsLeftHome
+      gameState
+      bets {
+        id
+        gameId
+        awayOdds
+        homeOdds
+        bettingState
+        bettingType
+        player
+        pick
+        stake
+        score
+        liveScore
+        potentialScore
+        locked
+        winner
+        correct
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRegularSeasonWeekQuery__
+ *
+ * To run a query within a React component, call `useGetRegularSeasonWeekQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRegularSeasonWeekQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRegularSeasonWeekQuery({
+ *   variables: {
+ *      season: // value for 'season'
+ *      week: // value for 'week'
+ *   },
+ * });
+ */
+export function useGetRegularSeasonWeekQuery(baseOptions?: Apollo.QueryHookOptions<GetRegularSeasonWeekQuery, GetRegularSeasonWeekQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRegularSeasonWeekQuery, GetRegularSeasonWeekQueryVariables>(GetRegularSeasonWeekDocument, options);
+      }
+export function useGetRegularSeasonWeekLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRegularSeasonWeekQuery, GetRegularSeasonWeekQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRegularSeasonWeekQuery, GetRegularSeasonWeekQueryVariables>(GetRegularSeasonWeekDocument, options);
+        }
+export type GetRegularSeasonWeekQueryHookResult = ReturnType<typeof useGetRegularSeasonWeekQuery>;
+export type GetRegularSeasonWeekLazyQueryHookResult = ReturnType<typeof useGetRegularSeasonWeekLazyQuery>;
+export type GetRegularSeasonWeekQueryResult = Apollo.QueryResult<GetRegularSeasonWeekQuery, GetRegularSeasonWeekQueryVariables>;

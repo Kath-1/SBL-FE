@@ -2,7 +2,7 @@ import { ReactNode, useState } from "react";
 
 type ExtandableSectionProps = {
   title: string;
-  children: ReactNode;
+  children?: ReactNode;
   expandedInitially: boolean;
 };
 

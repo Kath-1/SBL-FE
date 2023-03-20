@@ -13,9 +13,26 @@ const typeDefs = SCHEMA;
 
 const resolvers = {};
 
+const mocks = {
+  Game: () => ({
+    awayScore: 7,
+    homeScore: 14,
+  }),
+  GameBet: () => ({
+    player: "Thomas",
+    pick: "HOME",
+    potentialScore: 820,
+  }),
+
+  Team: () => ({
+    nickname: "Packers",
+  }),
+};
+
 const server = new ApolloServer({
   schema: addMocksToSchema({
     schema: makeExecutableSchema({ typeDefs, resolvers }),
+    mocks,
   }),
 });
 
