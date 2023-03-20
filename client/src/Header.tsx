@@ -19,7 +19,7 @@ const Header = () => (
           <img
             src={karrosProfilePicture}
             alt=""
-            className="h-12 rounded-full bg-white border-2 border-gray-400 bg-gray-400"
+            className="h-12 rounded-full border-2 border-gray-400 bg-gray-400"
           />
         ) : (
           <svg
