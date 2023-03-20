@@ -32,7 +32,7 @@ const WeekWithGames = () => {
     return <p>"Loading...";</p>;
   }
   if (error) {
-    return <p>`Error! ${error.message}`;</p>;
+    return <p>{`Error! ${error.message}`}</p>;
   }
   if (!data || !data.getRegularSeasonWeek) {
     return <p>No data</p>;
