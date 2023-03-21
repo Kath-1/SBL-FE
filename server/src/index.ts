@@ -17,6 +17,7 @@ const mocks = {
   Game: () => ({
     awayScore: 7,
     homeScore: 14,
+    bets: () => [...new Array(6)],
   }),
   GameBet: () => ({
     player: "Thomas",

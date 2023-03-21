@@ -10,10 +10,17 @@ const PlayerBet = ({ bet }: { bet: GameBet }) => {
             src="https://static.www.nfl.com/image/private/f_auto/league/teguylrnqqmfcwxvcmmz"
             alt=""
             // className="h-6 opacity-40"
-            className="h-6 "
+
+            className={`h-6 ${bet.correct ? "" : "opacity-40"}`}
           />
         </td>
-        <td className=" bg-yellow-300/50 rounded-lg w-14 text-center">320</td>
+        <td
+          className={` ${
+            bet.correct ? "bg-yellow-300/50" : "text-gray-400"
+          }  rounded-lg w-14 text-center`}
+        >
+          {bet.correct ? bet.potentialScore : `(${bet.potentialScore})`}
+        </td>
       </tr>
     </>
   );
