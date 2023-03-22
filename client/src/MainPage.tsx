@@ -1,10 +1,15 @@
 import React from "react";
 import ExpandableSection from "./ExpandableSection";
 import Leaderboard from "./Leaderboard";
-import { Game, useGetRegularSeasonWeekQuery } from "./generated/graphql";
+import {
+  Game,
+  useGetRegularSeasonWeekQuery,
+  useWeekForHomeQuery,
+} from "./generated/graphql";
 import PlayerBets from "./PlayerBets";
+import { ClientGame } from "./client-types";
 
-const GameWithBets = ({ game }: { game: Game }) => {
+const GameWithBets = ({ game }: { game: ClientGame }) => {
   return (
     <div className="bg-white rounded-md w-80 p-2 relative m-2">
       <div className="flex items-center justify-center">
@@ -27,7 +32,7 @@ const GameWithBets = ({ game }: { game: Game }) => {
 };
 
 const WeekWithGames = () => {
-  const { loading, error, data } = useGetRegularSeasonWeekQuery({});
+  const { loading, error, data } = useWeekForHomeQuery({});
   if (loading) {
     return <p>"Loading...";</p>;
   }

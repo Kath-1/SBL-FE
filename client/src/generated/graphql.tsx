@@ -309,6 +309,14 @@ export enum WeekState {
   Upcoming = 'UPCOMING'
 }
 
+export type WeekForHomeQueryVariables = Exact<{
+  season?: InputMaybe<Scalars['Int']>;
+  week?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type WeekForHomeQuery = { __typename?: 'Query', getRegularSeasonWeek?: { __typename?: 'RegularSeasonWeek', id: string, games: Array<{ __typename?: 'Game', id: string, awayScore?: number | null, homeScore?: number | null, awayTeam: { __typename?: 'Team', id: string, nickname: string, logo: string, wordmark: string }, homeTeam: { __typename?: 'Team', id: string, nickname: string, logo: string, wordmark: string }, bets: Array<{ __typename?: 'GameBet', id: string, player: string, pick: Side, potentialScore?: number | null, locked: boolean, correct?: boolean | null }> } | null> } | null };
+
 export type GetRegularSeasonWeekQueryVariables = Exact<{
   season?: InputMaybe<Scalars['Int']>;
   week?: InputMaybe<Scalars['Int']>;
@@ -318,6 +326,67 @@ export type GetRegularSeasonWeekQueryVariables = Exact<{
 export type GetRegularSeasonWeekQuery = { __typename?: 'Query', getRegularSeasonWeek?: { __typename?: 'RegularSeasonWeek', id: string, season: number, week: number, round: Round, state: WeekState, teamsOnBye: Array<string | null>, stake?: number | null, games: Array<{ __typename?: 'Game', id: string, round: Round, season: number, seasonType: SeasonType, isoKickoff?: number | null, stadium?: string | null, awayCoach?: string | null, homeCoach?: string | null, awayScore?: number | null, homeScore?: number | null, quarter?: Quarter | null, awayQuarterScores?: Array<number> | null, homeQuarterScores?: Array<number> | null, winner?: Side | null, teamInPossession?: string | null, down?: number | null, yardsToGo?: number | null, ballOnSide?: string | null, ballOnYardLine?: number | null, timeoutsLeftAway?: number | null, timeoutsLeftHome?: number | null, gameState: GameState, awayTeam: { __typename?: 'Team', id: string, shortName: string, fullName: string, city: string, nickname: string, conference: Conference, division: string, color1: string, color2: string, color3?: string | null, color4?: string | null, logo: string, wordmark: string }, homeTeam: { __typename?: 'Team', id: string, shortName: string, fullName: string, city: string, nickname: string, conference: Conference, division: string, color1: string, color2: string, color3?: string | null, color4?: string | null, logo: string, wordmark: string }, bets: Array<{ __typename?: 'GameBet', id: string, gameId: string, awayOdds?: number | null, homeOdds?: number | null, bettingState: BettingState, bettingType: BettingType, player: string, pick: Side, stake?: number | null, score?: number | null, liveScore?: number | null, potentialScore?: number | null, locked: boolean, winner?: Side | null, correct?: boolean | null }> } | null> } | null };
 
 
+export const WeekForHomeDocument = gql`
+    query WeekForHome($season: Int, $week: Int) {
+  getRegularSeasonWeek(season: $season, week: $week) {
+    id
+    games {
+      id
+      awayTeam {
+        id
+        nickname
+        logo
+        wordmark
+      }
+      homeTeam {
+        id
+        nickname
+        logo
+        wordmark
+      }
+      awayScore
+      homeScore
+      bets {
+        id
+        player
+        pick
+        potentialScore
+        locked
+        correct
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useWeekForHomeQuery__
+ *
+ * To run a query within a React component, call `useWeekForHomeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWeekForHomeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWeekForHomeQuery({
+ *   variables: {
+ *      season: // value for 'season'
+ *      week: // value for 'week'
+ *   },
+ * });
+ */
+export function useWeekForHomeQuery(baseOptions?: Apollo.QueryHookOptions<WeekForHomeQuery, WeekForHomeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WeekForHomeQuery, WeekForHomeQueryVariables>(WeekForHomeDocument, options);
+      }
+export function useWeekForHomeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WeekForHomeQuery, WeekForHomeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WeekForHomeQuery, WeekForHomeQueryVariables>(WeekForHomeDocument, options);
+        }
+export type WeekForHomeQueryHookResult = ReturnType<typeof useWeekForHomeQuery>;
+export type WeekForHomeLazyQueryHookResult = ReturnType<typeof useWeekForHomeLazyQuery>;
+export type WeekForHomeQueryResult = Apollo.QueryResult<WeekForHomeQuery, WeekForHomeQueryVariables>;
 export const GetRegularSeasonWeekDocument = gql`
     query GetRegularSeasonWeek($season: Int, $week: Int) {
   getRegularSeasonWeek(season: $season, week: $week) {

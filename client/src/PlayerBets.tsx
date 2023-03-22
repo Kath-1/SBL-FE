@@ -1,6 +1,7 @@
+import { ClientBet } from "./client-types";
 import { GameBet } from "./generated/graphql";
 
-const PlayerBet = ({ bet }: { bet: GameBet }) => {
+const PlayerBet = ({ bet }: { bet: ClientBet }) => {
   return (
     <>
       <tr>
@@ -26,7 +27,7 @@ const PlayerBet = ({ bet }: { bet: GameBet }) => {
   );
 };
 
-const PlayerBets = ({ bets }: { bets: GameBet[] | null }) => {
+const PlayerBets = ({ bets }: { bets: ClientBet[] | null }) => {
   return (
     <table className="table-auto border-separate border-spacing-x-6 border-spacing-y-1 m-auto">
       <tbody>

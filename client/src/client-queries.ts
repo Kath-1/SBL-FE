@@ -1,5 +1,38 @@
 import { gql } from "@apollo/client";
 
+export const WEEK_FOR_HOME = gql`
+  query WeekForHome($season: Int, $week: Int) {
+    getRegularSeasonWeek(season: $season, week: $week) {
+      id
+      games {
+        id
+        awayTeam {
+          id
+          nickname
+          logo
+          wordmark
+        }
+        homeTeam {
+          id
+          nickname
+          logo
+          wordmark
+        }
+        awayScore
+        homeScore
+        bets {
+          id
+          player
+          pick
+          potentialScore
+          locked
+          correct
+        }
+      }
+    }
+  }
+`;
+
 export const GET_REGULAR_SEASON_WEEK = gql`
   query GetRegularSeasonWeek($season: Int, $week: Int) {
     getRegularSeasonWeek(season: $season, week: $week) {
