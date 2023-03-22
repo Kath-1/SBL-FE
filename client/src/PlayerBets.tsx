@@ -1,5 +1,4 @@
 import { ClientBet } from "./client-types";
-import { GameBet } from "./generated/graphql";
 
 const PlayerBet = ({ bet }: { bet: ClientBet }) => {
   return (
@@ -10,8 +9,6 @@ const PlayerBet = ({ bet }: { bet: ClientBet }) => {
           <img
             src="https://static.www.nfl.com/image/private/f_auto/league/teguylrnqqmfcwxvcmmz"
             alt=""
-            // className="h-6 opacity-40"
-
             className={`h-6 ${bet.correct ? "" : "opacity-40"}`}
           />
         </td>

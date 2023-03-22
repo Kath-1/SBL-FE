@@ -1,12 +1,8 @@
 import React from "react";
 import ExpandableSection from "./ExpandableSection";
 import Leaderboard from "./Leaderboard";
-import {
-  Game,
-  useGetRegularSeasonWeekQuery,
-  useWeekForHomeQuery,
-} from "./generated/graphql";
 import PlayerBets from "./PlayerBets";
+import { useWeekForHomeQuery } from "./generated/graphql";
 import { ClientGame } from "./client-types";
 
 const GameWithBets = ({ game }: { game: ClientGame }) => {
