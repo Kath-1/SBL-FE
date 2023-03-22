@@ -1,13 +1,13 @@
 import { ClientBet } from "./client-types";
 
-const PlayerBet = ({ bet }: { bet: ClientBet }) => {
+const PlayerBet = ({ bet, logo }: { bet: ClientBet; logo: string }) => {
   return (
     <>
       <tr>
         <td>{bet.player}</td>
         <td>
           <img
-            src="https://static.www.nfl.com/image/private/f_auto/league/teguylrnqqmfcwxvcmmz"
+            src={logo}
             alt=""
             className={`h-6 ${bet.correct ? "" : "opacity-40"}`}
           />
@@ -24,12 +24,24 @@ const PlayerBet = ({ bet }: { bet: ClientBet }) => {
   );
 };
 
-const PlayerBets = ({ bets }: { bets: ClientBet[] | null }) => {
+const PlayerBets = ({
+  bets,
+  homeLogo,
+  awayLogo,
+}: {
+  bets: ClientBet[] | null;
+  homeLogo: string;
+  awayLogo: string;
+}) => {
   return (
     <table className="table-auto border-separate border-spacing-x-6 border-spacing-y-1 m-auto">
       <tbody>
         {bets?.map((bet) => (
-          <PlayerBet bet={bet} key={bet.id} />
+          <PlayerBet
+            bet={bet}
+            key={bet.id}
+            logo={bet.pick === "AWAY" ? awayLogo : homeLogo}
+          />
         ))}
       </tbody>
     </table>

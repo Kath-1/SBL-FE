@@ -22,7 +22,13 @@ const GameWithBets = ({ game }: { game: ClientGame }) => {
         </div>
       </div>
       <p className="text-center">–</p>
-      {game?.bets ? <PlayerBets bets={game?.bets} /> : null}
+      {game?.bets ? (
+        <PlayerBets
+          bets={game?.bets}
+          homeLogo={game?.homeTeam.logo}
+          awayLogo={game.awayTeam.logo}
+        />
+      ) : null}
     </div>
   );
 };

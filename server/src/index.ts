@@ -27,6 +27,7 @@ const mocks = {
 
   Team: () => ({
     nickname: "Packers",
+    logo: "https://static.www.nfl.com/image/private/f_auto/league/teguylrnqqmfcwxvcmmz",
   }),
 };
 
